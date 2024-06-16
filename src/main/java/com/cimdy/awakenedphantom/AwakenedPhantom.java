@@ -55,9 +55,6 @@ public class AwakenedPhantom
         if (FMLEnvironment.dist.isClient()) {
             modEventBus.addListener(RenderEvent::EntityRenderersEvent);
         }
-
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-
     }
 
     private void onClientSetup(FMLClientSetupEvent event) {
@@ -70,13 +67,6 @@ public class AwakenedPhantom
     {
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
-
-        if (Config.logDirtBlock)
-            LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
-
-        LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
-
-        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
 
 
