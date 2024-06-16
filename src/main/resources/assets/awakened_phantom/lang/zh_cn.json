@@ -1,0 +1,8 @@
+{
+  "itemGroup.AwakenedPhantom": "幻翼觉醒了",
+  "item.awakened_phantom.phantom_elytra":  "幻翼翅",
+  "item.awakened_phantom.awakened_phantom:phantom_elytra.tooltip1": "无法附魔",
+  "effect.awakened_phantom.cause_movement_slowdown": "攻击概率造成缓慢",
+  "effect.awakened_phantom.cause_blindness": "攻击概率造成失明",
+  "effect.awakened_phantom.cause_unluck": "攻击概率造成不幸"
+}

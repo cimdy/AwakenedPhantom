@@ -1,0 +1,8 @@
+{
+  "itemGroup.AwakenedPhantom": "AwakenedPhantom",
+  "item.awakened_phantom.phantom_elytra":  "PhantomElytra",
+  "item.awakened_phantom.awakened_phantom:phantom_elytra.tooltip1": "NotEnchantable",
+  "effect.awakened_phantom.cause_movement_slowdown": "CauseMovementSlowdown",
+  "effect.awakened_phantom.cause_blindness": "CauseBlindness",
+  "effect.awakened_phantom.cause_unluck": "CauseUnluck"
+}

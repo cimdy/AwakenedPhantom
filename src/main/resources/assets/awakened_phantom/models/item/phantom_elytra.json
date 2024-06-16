@@ -1,0 +1,14 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "awakened_phantom:item/phantom_elytra"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "broken": 1
+            },
+            "model": "awakened_phantom:item/broken_phantom_elytra"
+        }
+    ]
+}
