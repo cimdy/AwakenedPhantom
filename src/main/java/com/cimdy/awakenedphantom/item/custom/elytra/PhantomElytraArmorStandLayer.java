@@ -11,7 +11,7 @@ import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.item.ItemStack;
 
 public class PhantomElytraArmorStandLayer extends ElytraLayer<ArmorStand, ArmorStandArmorModel> {
-    private static final ResourceLocation TEXTURE_ELYTRA = new ResourceLocation(AwakenedPhantom.MODID,
+    private static final ResourceLocation TEXTURE_ELYTRA = ResourceLocation.fromNamespaceAndPath(AwakenedPhantom.MODID,
             "textures/entity/phantom_elytra.png");
 
     public PhantomElytraArmorStandLayer(ArmorStandRenderer armorStandRenderer,

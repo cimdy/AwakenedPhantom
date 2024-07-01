@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class PhantomElytraLayer extends ElytraLayer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
 
-    private static final ResourceLocation TEXTURE_ELYTRA = new ResourceLocation(AwakenedPhantom.MODID,
+    private static final ResourceLocation TEXTURE_ELYTRA = ResourceLocation.fromNamespaceAndPath(AwakenedPhantom.MODID,
             "textures/entity/phantom_elytra.png");
 
     public PhantomElytraLayer(

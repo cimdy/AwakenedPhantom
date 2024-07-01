@@ -24,7 +24,7 @@ public class PhantomElytra extends ElytraItem {
     }
 
     @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+    public boolean isEnchantable(ItemStack pStack) {
         return false;
     }
 

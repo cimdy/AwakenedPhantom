@@ -55,11 +55,12 @@ public class AwakenedPhantom
         if (FMLEnvironment.dist.isClient()) {
             modEventBus.addListener(RenderEvent::EntityRenderersEvent);
         }
+
     }
 
     private void onClientSetup(FMLClientSetupEvent event) {
         // broken Property
-        ItemProperties.register(ItemRegister.PHANTOM_ELYTRA.get(), new ResourceLocation(MODID, "broken"),
+        ItemProperties.register(ItemRegister.PHANTOM_ELYTRA.get(), ResourceLocation.fromNamespaceAndPath(AwakenedPhantom.MODID, "broken"),
                 (stack, arg1, arg2, arg3) -> PhantomElytra.isUseable(stack) ? 0 : 1);
     }
 

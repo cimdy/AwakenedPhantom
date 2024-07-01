@@ -2,24 +2,26 @@ package com.cimdy.awakenedphantom.event;
 
 import com.cimdy.awakenedphantom.attach.AttachRegister;
 import com.cimdy.awakenedphantom.item.ItemRegister;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.bus.api.Event;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerSpawnPhantomsEvent;
 
 import java.util.Random;
-
-import static net.minecraft.world.item.enchantment.EnchantmentHelper.getMobLooting;
 
 public class PhantomEvent{
     @SubscribeEvent
@@ -36,7 +38,9 @@ public class PhantomEvent{
                 ServerLevel serverLevel = (ServerLevel) event.getEntity().level();
                 int rare = phantom.getData(AttachRegister.RARE);
                 RandomSource randomSource = serverLevel.random;
-                if((3 + getMobLooting(player)) * (100 + (rare + player.getLuck()) * 25) / 100 > randomSource.nextInt(100) + 1){
+                //抢夺未生效
+                int loot = EnchantmentHelper.getEnchantmentLevel(unwrap(player.level(), Enchantments.LOOTING), player);
+                if((3 + loot) * (100 + (rare + player.getLuck()) * 25) / 100 > randomSource.nextInt(100) + 1){
                     ItemEntity itemEntity = new ItemEntity(EntityType.ITEM, serverLevel);
                     itemEntity.setItem(ItemRegister.PHANTOM_ELYTRA.toStack());
                     itemEntity.moveTo(phantom.getEyePosition());
@@ -45,6 +49,11 @@ public class PhantomEvent{
                 }
             }
         }
+    }
+
+
+    public static <T> Holder<T> unwrap(Level level, ResourceKey<T> key){
+        return level.registryAccess().registryOrThrow(key.registryKey()).getHolderOrThrow(key);
     }
 
     public static void EntityJoinLevelEvent(EntityJoinLevelEvent event) {
