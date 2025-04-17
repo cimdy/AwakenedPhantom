@@ -11,8 +11,17 @@ import java.util.function.Supplier;
 public class AttachRegister {
     public static final DeferredRegister<AttachmentType<?>> ATTACHMENT_TYPES = DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, AwakenedPhantom.MODID);
 
-    public static final Supplier<AttachmentType<Integer>> SPELL_BUFF = ATTACHMENT_TYPES.register(
-            "spell_buff", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build());
+    public static final Supplier<AttachmentType<Integer>> EFFECT_TIME = ATTACHMENT_TYPES.register(
+            "effect_time", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build());
+
+    public static final Supplier<AttachmentType<Integer>> SPELLING_TIME = ATTACHMENT_TYPES.register(
+            "spelling_time", () -> AttachmentType.builder(() -> -1).serialize(Codec.INT).build());
+
+    public static final Supplier<AttachmentType<Integer>> SPELL_TIME = ATTACHMENT_TYPES.register(
+            "spell_time", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build());
+
+    public static final Supplier<AttachmentType<Integer>> EFFECT_BUFF = ATTACHMENT_TYPES.register(
+            "effect_buff", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build());
 
     public static final Supplier<AttachmentType<Integer>> CAUSE_MOVEMENT_SLOWDOWN = ATTACHMENT_TYPES.register(
             "cause_movement_slowdown", () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build());

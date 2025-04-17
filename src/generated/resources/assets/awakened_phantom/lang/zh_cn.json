@@ -1,0 +1,20 @@
+{
+  "effect.awakened_phantom.cause_blindness": "攻击概率造成失明",
+  "effect.awakened_phantom.cause_movement_slowdown": "攻击概率造成缓慢",
+  "effect.awakened_phantom.cause_unluck": "攻击概率造成不幸",
+  "item.awakened_phantom.phantom_elytra": "幻翼翅",
+  "item.awakened_phantom.phantom_elytra.tooltip": "无法附魔",
+  "item.minecraft.lingering_potion.effect.cause_blindness_potion": "滞留型操控失明药水",
+  "item.minecraft.lingering_potion.effect.cause_movement_slowdown_potion": "滞留型操控缓慢药水",
+  "item.minecraft.lingering_potion.effect.cause_unluck_potion": "滞留型操控不幸药水",
+  "item.minecraft.potion.effect.cause_blindness_potion": "操控失明药水",
+  "item.minecraft.potion.effect.cause_movement_slowdown_potion": "操控缓慢药水",
+  "item.minecraft.potion.effect.cause_unluck_potion": "操控不幸药水",
+  "item.minecraft.splash_potion.effect.cause_blindness_potion": "喷溅型操控失明药水",
+  "item.minecraft.splash_potion.effect.cause_movement_slowdown_potion": "喷溅型操控缓慢药水",
+  "item.minecraft.splash_potion.effect.cause_unluck_potion": "喷溅型操控不幸药水",
+  "item.minecraft.tipped_arrow.effect.cause_blindness_potion": "操控失明之箭",
+  "item.minecraft.tipped_arrow.effect.cause_movement_slowdown_potion": "操控缓慢之箭",
+  "item.minecraft.tipped_arrow.effect.cause_unluck_potion": "操控不幸之箭",
+  "itemGroup.awakened_phantom": "幻翼觉醒了"
+}
