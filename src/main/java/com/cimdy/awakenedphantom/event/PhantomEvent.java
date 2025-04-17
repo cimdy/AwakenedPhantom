@@ -35,10 +35,10 @@ import net.neoforged.neoforge.event.entity.player.PlayerSpawnPhantomsEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class PhantomEvent{
+public class PhantomEvent {
     @SubscribeEvent
     public static void PhantomTickEvent(EntityTickEvent.Post event) {
-        if(event.getEntity() instanceof Phantom phantom && phantom.level() instanceof ServerLevel serverLevel) {
+        if (event.getEntity() instanceof Phantom phantom && phantom.level() instanceof ServerLevel serverLevel) {
             //恼鬼召唤
             int spell_time = phantom.getData(AttachRegister.SPELL_TIME);
             int spelling_time = phantom.getData(AttachRegister.SPELLING_TIME);
@@ -86,29 +86,29 @@ public class PhantomEvent{
         if (event.getEntity() instanceof Phantom phantom && phantom.level() instanceof ServerLevel serverLevel
                 && event.getSource().getEntity() instanceof LivingEntity) { // 幻翼被实体伤害
             int spell_time = phantom.getData(AttachRegister.SPELL_TIME);
-            int min_spell_time =  (int)(1200 / getDifficultyMultiplier(serverLevel, phantom));
+            int min_spell_time = (int) (1200 / getDifficultyMultiplier(serverLevel, phantom));
             int add_time = spell_time * (min_spell_time * 30 / 100);
             phantom.setData(AttachRegister.SPELL_TIME, spell_time + add_time); //降低30%召唤冷却
         }
     }
 
-    public static void PlayerSpawnPhantomsEvent(PlayerSpawnPhantomsEvent event){
+    public static void PlayerSpawnPhantomsEvent(PlayerSpawnPhantomsEvent event) {
         //幻翼将永远保持生成 而不是只在玩家至少72000刻没睡觉后才开始生成
         event.setResult(PlayerSpawnPhantomsEvent.Result.ALLOW);
     }
 
     public static void PhantomDeathEvent(LivingDeathEvent event) {
-        if(event.getEntity() instanceof Phantom phantom && phantom.level() instanceof ServerLevel serverLevel){
+        if (event.getEntity() instanceof Phantom phantom && phantom.level() instanceof ServerLevel serverLevel) {
             playSound(SoundEvents.EVOKER_PREPARE_SUMMON, phantom);
             performSpellCasting(phantom); //死亡立即召唤一只
-            if(event.getSource().getEntity() instanceof Player player) {
+            if (event.getSource().getEntity() instanceof Player player) {
                 int rare = phantom.getData(AttachRegister.RARE);
                 RandomSource randomSource = serverLevel.random;
                 //抢夺
                 int loot = EnchantmentHelper.getEnchantmentLevel(serverLevel.holderOrThrow(Enchantments.LOOTING), player);
-                if((3 + loot) * (100 + (rare + player.getLuck()) * 25) / 100 > randomSource.nextInt(100) + 1){
+                if ((3 + loot) * (100 + (rare + player.getLuck()) * 25) / 100 > randomSource.nextInt(100) + 1) {
                     phantom.spawnAtLocation(serverLevel, ItemRegister.PHANTOM_ELYTRA.toStack());
-                }else { // 如果不掉落幻翼翅则掉落药水箭和药水
+                } else { // 如果不掉落幻翼翅则掉落药水箭和药水
                     int random1 = serverLevel.random.nextInt(100);
                     ItemStack arrow = new ItemStack(
                             random1 > 50 ? Items.TIPPED_ARROW :
@@ -128,19 +128,19 @@ public class PhantomEvent{
     }
 
     public static void PhantomJoinLevelEvent(EntityJoinLevelEvent event) {
-        if(event.getEntity() instanceof Phantom phantom && phantom.level() instanceof ServerLevel serverLevel){
-            if(!phantom.hasData(AttachRegister.RARE)){
+        if (event.getEntity() instanceof Phantom phantom && phantom.level() instanceof ServerLevel serverLevel) {
+            if (!phantom.hasData(AttachRegister.RARE)) {
                 int rarity = serverLevel.random.nextInt(100) + 1;
                 int rare = 0;
-                if(rarity > 50 && rarity <= 85){
+                if (rarity > 50 && rarity <= 85) {
                     rare = 1;
-                }else if(rarity > 85 && rarity <= 95){
+                } else if (rarity > 85 && rarity <= 95) {
                     rare = 2;
-                }else if(rarity > 95){
+                } else if (rarity > 95) {
                     rare = 3;
                 }
 
-                if(rare > 0) {
+                if (rare > 0) {
                     double health = phantom.getAttributeValue(Attributes.MAX_HEALTH) * (rare * 50 + 100) / 100;
                     phantom.getAttribute(Attributes.MAX_HEALTH).setBaseValue(health);
                     phantom.heal((float) health);
@@ -151,12 +151,12 @@ public class PhantomEvent{
                 phantom.setData(AttachRegister.RARE, rare);
             }
         }
-        if(event.getEntity() instanceof Vex vex) {
-            if(!vex.level().isClientSide && vex.getOwner() != null && vex.getOwner().hasData(AttachRegister.EFFECT_BUFF)){
+        if (event.getEntity() instanceof Vex vex) {
+            if (!vex.level().isClientSide && vex.getOwner() != null && vex.getOwner().hasData(AttachRegister.EFFECT_BUFF)) {
                 int spell_buff = vex.getOwner().getData(AttachRegister.EFFECT_BUFF);
-                if(spell_buff > 0){
+                if (spell_buff > 0) {
                     //amp = 0  1  3  4
-                    int amp = Math.max(vex.getOwner().getData(AttachRegister.RARE) * 2  - 1, 0);
+                    int amp = Math.max(vex.getOwner().getData(AttachRegister.RARE) * 2 - 1, 0);
                     amp = Math.min(amp, 4);
                     switch (spell_buff) {
                         case 1 -> vex.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 300, amp));
@@ -168,9 +168,10 @@ public class PhantomEvent{
                         case 7 -> vex.addEffect(new MobEffectInstance(MobEffects.INSTANT_DAMAGE, 300, amp));
                         case 8 -> vex.addEffect(new MobEffectInstance(EffectRegister.CAUSE_UNLUCK, 300, amp));
                         case 9 -> vex.addEffect(new MobEffectInstance(EffectRegister.CAUSE_BLINDNESS, 300, amp));
-                        case 10 -> vex.addEffect(new MobEffectInstance(EffectRegister.CAUSE_MOVEMENT_SLOWDOWN, 300, amp));
+                        case 10 ->
+                                vex.addEffect(new MobEffectInstance(EffectRegister.CAUSE_MOVEMENT_SLOWDOWN, 300, amp));
                     }
-                    vex.getOwner().setData(AttachRegister.EFFECT_BUFF,0);
+                    vex.getOwner().setData(AttachRegister.EFFECT_BUFF, 0);
                 }
             }
         }
@@ -199,7 +200,7 @@ public class PhantomEvent{
     }
 
     protected static void performSpellCasting(Mob mob) { //生成恼鬼
-        if(mob.level() instanceof ServerLevel serverLevel){
+        if (mob.level() instanceof ServerLevel serverLevel) {
             BlockPos blockpos = mob.blockPosition().offset(-2 + serverLevel.random.nextInt(5),
                     1, -2 + serverLevel.random.nextInt(5));
             Vex vex = new Vex(EntityType.VEX, serverLevel);

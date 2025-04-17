@@ -8,7 +8,6 @@ import com.cimdy.awakenedphantom.event.GenEvent;
 import com.cimdy.awakenedphantom.event.ItemEvent;
 import com.cimdy.awakenedphantom.event.PhantomEvent;
 import com.cimdy.awakenedphantom.item.ItemRegister;
-import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -16,15 +15,12 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import org.slf4j.Logger;
 
 @Mod(AwakenedPhantom.MODID)
-public class AwakenedPhantom
-{
+public class AwakenedPhantom {
     public static final String MODID = "awakened_phantom";
 
-    public AwakenedPhantom(IEventBus modEventBus, ModContainer modContainer)
-    {
+    public AwakenedPhantom(IEventBus modEventBus, ModContainer modContainer) {
         AttachRegister.ATTACHMENT_TYPES.register(modEventBus);
         EffectRegister.MOB_EFFECTS.register(modEventBus);
         PotionRegister.POTIONS.register(modEventBus);
@@ -48,6 +44,7 @@ public class AwakenedPhantom
     }
 
     @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {}
+    public void onServerStarting(ServerStartingEvent event) {
+    }
 
 }

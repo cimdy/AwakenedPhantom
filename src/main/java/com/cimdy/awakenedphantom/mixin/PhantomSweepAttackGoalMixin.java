@@ -7,10 +7,10 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(targets = "net.minecraft.world.entity.monster.Phantom$PhantomSweepAttackGoal")
 public abstract class PhantomSweepAttackGoalMixin extends Goal {
-        @ModifyExpressionValue(method = "tick",
-                at = @At(value = "INVOKE",
-                        target = "Lnet/minecraft/world/entity/LivingEntity;getY(D)D"))
-        private double y(double v){
-            return v + 10;
-        }
+    @ModifyExpressionValue(method = "tick",
+            at = @At(value = "INVOKE",
+                    target = "Lnet/minecraft/world/entity/LivingEntity;getY(D)D"))
+    private double y(double v) {
+        return v + 10;
     }
+}

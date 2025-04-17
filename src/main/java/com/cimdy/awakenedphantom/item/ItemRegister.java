@@ -1,7 +1,6 @@
 package com.cimdy.awakenedphantom.item;
 
 import com.cimdy.awakenedphantom.AwakenedPhantom;
-
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Unit;
